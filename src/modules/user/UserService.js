@@ -1,21 +1,36 @@
+import { bcryptSaltRounds } from "../../cofig/env.js";
+import Preference from "../../model/PreferenceSchema.js";
 import User from "../../model/UserSchema.js";
 import { ApiError } from "../../utils/ApiError.js";
-
+import bcrypt from "bcrypt"
 // ✅ CREATE USER
-export const createUserService = async ({ name, email, passwordHash }) => {
+export const createUserService = async ({ name, email, password, preferences = [] }) => {
+
+
     const existUser = await User.findOne({ email });
 
     if (existUser) {
         throw new ApiError(409, "User already exists");
     }
 
-    const user = await User.create({
+    const hashedPassword = await bcrypt.hash(password,bcryptSaltRounds);
+
+    const newUser = await User.create({
         name,
         email,
-        passwordHash,
+        passwordHash: hashedPassword,
     });
 
-    return user;
+    // create prefereneces if provided
+
+    if(preferences && preferences.length > 0 ) {
+        await Preference.create({
+            user : newUser._id,
+            preferences : preferences
+        })
+    }
+
+    return newUser;
 };
 
 // ✅ GET ALL USERS
