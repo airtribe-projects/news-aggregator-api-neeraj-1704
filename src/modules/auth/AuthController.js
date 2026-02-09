@@ -2,12 +2,13 @@ import { ApiError } from "../../utils/ApiError.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
 
 import { loginUserService, logoutUserService } from "./AuthService.js";
+import { ApiResponse } from "../../utils/ApiResponse.js";
 
 
 
 export const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-        console.log(req.body)
+   // console.log(req.body)
     // 1. Validation (controller responsibility)
     if (!email || !password) {
         throw new ApiError(400, "Email and password are required");
@@ -31,7 +32,7 @@ export const loginUser = asyncHandler(async (req, res) => {
         .json(
             new ApiResponse(
                 200,
-                { user, accessToken, refreshToken },
+                { user, accessToken },
                 "User logged in successfully"
             )
         );

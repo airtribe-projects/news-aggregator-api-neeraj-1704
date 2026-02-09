@@ -10,38 +10,33 @@ import { ApiError } from "../../utils/ApiError.js";
 import { ApiResponse } from "../../utils/ApiResponse.js";
 import { asyncHandler } from "../../utils/asyncHandler.js";
 
-
-// ✅ CREATE USER
+// create User
 export const createUser = asyncHandler(async (req, res) => {
-    const { name, email, password,preferences  } = req.body;
-        console.log("The request body is the : ",req.body)
+    const { name, email, password, preferences } = req.body;
     if (!name || !email || !password) {
-        throw new ApiError(400, "All fields are required");
+      throw new ApiError(400, "All fields are required");
     }
-
-    const user = await createUserService({ name, email, password, preferences});
-
-    return res.status(201).json(
-        new ApiResponse(
-            201,
-            {
-                id: user._id,
-                name: user.name,
-                email: user.email,
-            },
-            "User created successfully"
-        )
-    );
-});
+  
+    const user = await createUserService({ name, email, password, preferences });
+  
+    return res.status(200).json({
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+      },
+    });
+  });
+  
 
 // ✅ GET ALL USERS
 export const getAllUsers = asyncHandler(async (req, res) => {
     const users = await getAllUsersService();
 
-    if(!users) {
+    if (!users) {
         return res.status(400).json(
-            new ApiResponse(300, users, "Users fetched Deleletd")
-        ); 
+            new ApiResponse(300, users, "Users fetched not found")
+        );
     }
     return res.status(200).json(
         new ApiResponse(200, users, "Users fetched successfully")

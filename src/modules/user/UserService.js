@@ -35,7 +35,7 @@ export const createUserService = async ({ name, email, password, preferences = [
 
 // ✅ GET ALL USERS
 export const getAllUsersService = async () => {
-    return await User.find().select("-passwordHash");
+    return await User.find({ isDeleted: false }).select("-passwordHash");
 };
 
 // ✅ GET USER BY ID
@@ -63,10 +63,13 @@ export const updateUserService = async (id, data) => {
     return user;
 };
 
-// ✅ DELETE USER
+// ✅ DELETE USER  SOF
 export const deleteUserService = async (id) => {
-    const user = await User.findByIdAndDelete(id);
-
+    const user = await User.findOneAndUpdate(
+        {_id : id , isDeleted : false},
+        {isDeleted : true},
+        {new : true},
+    );
     if (!user) {
         throw new ApiError(404, "User not found");
     }

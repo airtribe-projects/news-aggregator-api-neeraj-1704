@@ -18,7 +18,6 @@ app.use("/api/v1",router)
 //         res.send("This is my test routes");
 // })
 
-
 // global error middleware
 import {errorMiddleware} from './middleware/ErrorHandler.js';
 app.use(errorMiddleware);

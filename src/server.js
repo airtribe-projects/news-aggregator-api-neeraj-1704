@@ -5,15 +5,16 @@ import { port } from "./cofig/env.js"
 const startServer = async () => {
     try {
         await connectDB();
-       console.log("Database Ready")
-        app.listen(port, (err) => {
-            console.log("Server is listerning on the port", `${port}`)
-        })
-    } catch (error) {
-        console.log("Database connection failed", error);
+        console.log("Database Connected");
+
+        app.listen(port, () => {
+            console.log("Server running on port", port);
+        });
+    } catch (err) {
+        console.log("DB Connection Failed", err);
         process.exit(1);
     }
-}
+};
 
 startServer();
 

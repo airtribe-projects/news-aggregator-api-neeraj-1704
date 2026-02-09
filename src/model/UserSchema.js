@@ -19,6 +19,11 @@ const userSchema = new Schema(
         passwordHash: {
             type: String,
             required: true
+        },
+        // Added Soft Delete Field
+        isDeleted: {
+            type: Boolean,
+            default: false
         }
     },
     { timestamps: true }
