@@ -47,37 +47,40 @@ This project allows users to:
 ```
 
 src/
-│── config/
-│   ├── env.js
-│   ├── constants.js
+├── config/
+│ ├── env.js
+│ ├── constants.js
 │
-│── db/
-│   ├── connectDB.js
+├── db/
+│ └── connectDB.js
 │
-│── middleware/
-│   ├── auth.middleware.js
-│   ├── error.middleware.js
+├── middleware/
+│ ├── auth.middleware.js
+│ └── error.middleware.js
 │
-│── modules/
-│   ├── auth/
-│   ├── user/
-│   ├── news/
-│   ├── preferences/
-│   ├── cache/
+├── modules/
+│ ├── auth/
+│ ├── user/
+│ ├── news/
+│ ├── preferences/
+│ └── cache/
 │
-│── routes/
-│   └── index.js
+├── routes/
+│ └── index.js
 │
-│── utils/
-      ├── ApiError.js
-│     ├── ApiResponse.js
-│     ├── asyncHandler.js
-├──   ├── token.js
-│── app.js
-│── Constants.js
-│── server.js
+├── utils/
+│ ├── ApiError.js
+│ ├── ApiResponse.js
+│ ├── asyncHandler.js
+│ └── token.js
+│
+├── app.js
+├── Constants.js
+├── server.js
+
 test/
 README.md
+.env.example
 
 ## ⚡ Prerequisites
 
@@ -272,6 +275,3 @@ The test suite covers:
 
 ```
 
-
-Do you want me to do that next?
-```
