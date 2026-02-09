@@ -49,7 +49,7 @@ This project allows users to:
 src/
 ├── config/
 │ ├── env.js
-│ ├── constants.js
+│ └── constants.js
 │
 ├── db/
 │ └── connectDB.js
