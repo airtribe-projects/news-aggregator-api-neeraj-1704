@@ -1,3 +1,6 @@
+Got it! I will **keep all your content intact** but **restructure and format it properly** so that the README looks clean, readable, and professional. Here’s the properly formatted version:
+
+```markdown
 # 📰 Personalized News Aggregator API
 
 A RESTful API built using **Node.js**, **Express.js**, **MongoDB**, **JWT Authentication**, and **External News APIs**.
@@ -28,7 +31,7 @@ This project allows users to:
 ## 🛠 Tech Stack
 
 | Technology | Usage |
-|----------|------|
+|------------|-------|
 | Node.js | Backend Runtime |
 | Express.js | REST API Framework |
 | MongoDB + Mongoose | Database |
@@ -40,6 +43,8 @@ This project allows users to:
 ---
 
 ## 📂 Project Structure
+
+```
 
 src/
 │── config/
@@ -64,71 +69,94 @@ src/
 │   └── index.js
 │
 │── utils/
+      ├── ApiError.js
+│     ├── ApiResponse.js
+│     ├── asyncHandler.js
+├──   ├── token.js
 │── app.js
+│── Constants.js
 │── server.js
-│
 test/
 README.md
-.env.example
 
-Prerequisites
-Node.js >= 18.0.0
-MongoDB database (local)
-News API key from [NewsAPI](https://gnews.io/dashboard)
+## ⚡ Prerequisites
 
+- Node.js >= 18.0.0  
+- MongoDB database (local)  
+- News API key from [GNews](https://gnews.io/dashboard)
 
+---
 
-Installation
+## 💻 Installation
 
 Clone the repository:
 
+```bash
 git clone <repository-url>
 cd news-aggregator-api-neeraj-1704
+````
 
 Install dependencies:
+
+```bash
 npm install
+```
 
-Create a .env file in the root directory:
+Create a `.env` file in the root directory:
 
+```
 PORT=3000
-PORT = 3000
-MONGODB_URI = mongodb://localhost:27017/{databasename}
+MONGODB_URI=mongodb://localhost:27017/{databasename}
 CORS_ORIGIN=*
 ACCESS_TOKEN_SECRET=(your access token)
 ACCESS_TOKEN_EXPIRY=1d
 NEWS_API_KEY=(your-key-api)
-NEWS_API_BASE_URL=https://gnews.io/api/v4 (your api url)
+NEWS_API_BASE_URL=https://gnews.io/api/v4
+```
 
-Note - please flow this step from the give link https://docs.gnews.io/#introduction create the api key
+> Note: Follow this link to create the API key: [GNews API](https://docs.gnews.io/#introduction)
 
 Update the environment variables with your own values.
-Running the Application
 
-Development Mode
+---
+
+## 🚀 Running the Application
+
+**Development Mode:**
+
+```bash
 npm run dev
+```
 
-The server will start on http://localhost:3000 (or the port specified in your .env file).
+The server will start on [http://localhost:3000](http://localhost:3000).
 
-Production Mode
+**Production Mode:**
+
+```bash
 node src/server.js
+```
 
+---
 
+## 🧪 Testing
 
-🧪 Testing
+```bash
 npm test
+```
 
 The test suite covers:
-User signup and login
-Preference management
-Personalized news fetching
-Authentication middleware
-Error handling
 
+* User signup and login
+* Preference management
+* Personalized news fetching
+* Authentication middleware
+* Error handling
 
-User Data for POST /api/v1/users
+---
 
-post data for the user creation in the backend 
+## 👥 Sample User Data for `POST /api/v1/users`
 
+```json
 {
   "name": "Amit Sharma",
   "email": "amit@test.com",
@@ -184,301 +212,66 @@ post data for the user creation in the backend
   "password": "rohitPass321",
   "preferences": ["dark_mode", "email_notifications", "new_features"]
 }
+```
 
+---
 
+## ✅ API Endpoints
 
-✅ API Endpoints
-User APIs
-Method	Endpoint	Description
-# POST	/api/v1/users	Create new user
-# GET	/api/v1/users	Get all users
-# PUT	/api/v1/users/:id	Update user
-# DELETE	/api/v1/users/:id	Delete user
-Auth APIs
-Method	Endpoint	Description
-# POST	/api/v1/auth/login	User login
-# POST	/api/v1/auth/logout	User logout
-Preferences APIs
-Method	Endpoint	Description
-# GET	/api/v1/preferences	Get user preferences
-# PUT	/api/v1/preferences	Update user preferences
-Personalized News API
-Method	Endpoint	Description
-# GET	/api/v1/news/personalized	Fetch personalized news based on user preferences
+### **User APIs**
 
+| Method | Endpoint          | Description     |
+| ------ | ----------------- | --------------- |
+| POST   | /api/v1/users     | Create new user |
+| GET    | /api/v1/users     | Get all users   |
+| PUT    | /api/v1/users/:id | Update user     |
+| DELETE | /api/v1/users/:id | Delete user     |
 
-✅ API Endpoints
-User APIs
-1. Create User
+---
 
-POST /api/v1/users
-Register a new user.
+### **Auth APIs**
 
-Request Body:
+| Method | Endpoint            | Description |
+| ------ | ------------------- | ----------- |
+| POST   | /api/v1/auth/login  | User login  |
+| POST   | /api/v1/auth/logout | User logout |
 
-{
-  "name": "Amit Sharma",
-  "email": "amit@test.com",
-  "password": "password123",
-  "preferences": ["light_mode", "sms_notifications", "daily_summary"]
-}
+---
 
+### **Preferences APIs**
 
-Response: 200 OK
+| Method | Endpoint            | Description             |
+| ------ | ------------------- | ----------------------- |
+| GET    | /api/v1/preferences | Get user preferences    |
+| PUT    | /api/v1/preferences | Update user preferences |
 
-{
-  "user": {
-    "id": "64e123abc1234567890abcdef",
-    "name": "Amit Sharma",
-    "email": "amit@test.com"
-  }
-}
+---
 
+### **Personalized News API**
 
-Error Responses:
+| Method | Endpoint                  | Description                                       |
+| ------ | ------------------------- | ------------------------------------------------- |
+| GET    | /api/v1/news/personalized | Fetch personalized news based on user preferences |
 
-400 Bad Request – Missing fields
+---
 
-{
-  "status": "error",
-  "message": "All fields are required"
-}
+## 🔐 Security Features
 
+* Password hashing using bcrypt
+* JWT-based authentication
+* Input validation
+* Error handling to prevent sensitive info leakage
+* Secure HTTP headers
 
-409 Conflict – User already exists
+---
 
-{
-  "status": "error",
-  "message": "User already exists"
-}
+## 💾 Caching
 
-2. Get All Users
+* News articles are cached in memory for **5 minutes (TTL)**
+* Caching is **user-preferences based** to reduce external API calls
 
-GET /api/v1/users
-Fetch all users.
+```
 
-Response: 200 OK
 
-{
-  "status": 200,
-  "data": [
-    {
-      "id": "64e123abc1234567890abcdef",
-      "name": "Amit Sharma",
-      "email": "amit@test.com"
-    },
-    {
-      "id": "64e124def1234567890abcdef",
-      "name": "Rahul Verma",
-      "email": "rahul@test.com"
-    }
-  ],
-  "message": "Users fetched successfully"
-}
-
-3. Update User
-
-PUT /api/v1/users/:id
-Update a user by ID.
-
-Request Body Example:
-
-{
-  "name": "Amit K. Sharma",
-  "preferences": ["dark_mode", "daily_summary"]
-}
-
-
-Response: 200 OK
-
-{
-  "status": 200,
-  "data": {
-    "id": "64e123abc1234567890abcdef",
-    "name": "Amit K. Sharma",
-    "email": "amit@test.com",
-    "preferences": ["dark_mode", "daily_summary"]
-  },
-  "message": "User updated successfully"
-}
-
-4. Delete User
-
-DELETE /api/v1/users/:id
-
-Response: 200 OK
-
-{
-  "status": 200,
-  "data": null,
-  "message": "User deleted successfully"
-}
-
-Auth APIs
-1. Login User
-
-POST /api/v1/auth/login
-
-Request Body:
-
-{
-  "email": "amit@test.com",
-  "password": "password123"
-}
-
-
-Response: 200 OK
-
-{
-  "status": 200,
-  "data": {
-    "user": {
-      "id": "64e123abc1234567890abcdef",
-      "name": "Amit Sharma",
-      "email": "amit@test.com"
-    },
-    "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-  },
-  "message": "User logged in successfully"
-}
-
-
-Error Responses:
-
-400 Bad Request – Missing email/password
-
-{
-  "status": "error",
-  "message": "Email and password are required"
-}
-
-
-401 Unauthorized – Invalid credentials
-
-{
-  "status": "error",
-  "message": "Invalid email or password"
-}
-
-2. Logout User
-
-POST /api/v1/auth/logout
-
-Response: 200 OK
-
-{
-  "status": 200,
-  "data": {},
-  "message": "User logged out successfully"
-}
-
-Preferences APIs
-1. Get User Preferences
-
-GET /api/v1/preferences
-Headers:
-
-Authorization: Bearer <accessToken>
-
-
-Response: 200 OK
-
-{
-  "status": 200,
-  "data": {
-    "preferences": ["light_mode", "sms_notifications", "daily_summary"]
-  },
-  "message": "Preferences fetched successfully"
-}
-
-
-Error Response:
-
-401 Unauthorized – Missing or invalid token
-
-{
-  "status": "error",
-  "message": "Unauthorized"
-}
-
-2. Update User Preferences
-
-PUT /api/v1/preferences
-Headers:
-
-Authorization: Bearer <accessToken>
-
-
-Request Body Example:
-
-{
-  "preferences": ["dark_mode", "push_notifications", "weekly_summary"]
-}
-
-
-Response: 200 OK
-
-{
-  "status": 200,
-  "data": {},
-  "message": "Preferences updated successfully"
-}
-
-Personalized News API
-1. Get Personalized News
-
-GET /api/v1/news/personalized
-Headers:
-
-Authorization: Bearer <accessToken>
-
-
-Response: 200 OK
-
-{
-  "status": 200,
-  "data": {
-    "news": [
-      {
-        "title": "Breaking Tech News",
-        "description": "Latest updates in technology.",
-        "url": "https://example.com/article1",
-        "source": "TechCrunch",
-        "publishedAt": "2026-02-09T10:00:00Z"
-      },
-      {
-        "title": "Sports Highlights",
-        "description": "Daily sports news highlights.",
-        "url": "https://example.com/article2",
-        "source": "ESPN",
-        "publishedAt": "2026-02-09T09:30:00Z"
-      }
-    ]
-  },
-  "message": "Personalized news fetched successfully"
-}
-
-
-Error Response:
-
-401 Unauthorized – Missing or invalid token
-
-{
-  "status": "error",
-  "message": "Unauthorized"
-}
-
-
-🔐 Security Features
-Password hashing using bcrypt
-JWT-based authentication
-Input validation
-Error handling to prevent sensitive info leakage
-Secure HTTP headers
-
-
-💾 Caching
-News articles are cached in memory for 5 minutes (TTL)
-Caching is based on user preferences to reduce external API calls
-
-
+Do you want me to do that next?
+```
