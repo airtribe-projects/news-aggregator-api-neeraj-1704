@@ -274,4 +274,8 @@ The test suite covers:
 * Caching is **user-preferences based** to reduce external API calls
 
 ```
+## 👨‍💻 Author
+
+**Neeraj Khalkar**
+Assignment Submission – **Airtribe**
 
